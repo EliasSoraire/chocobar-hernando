@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Chocobar Hernando</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+
+  <!-- ── LOGIN ── -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <img src="../assets/logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'" />
+      <h1 class="login-titulo">Panel Administrativo</h1>
+      <p class="login-sub">Chocobar Hernando Propiedades</p>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="tu@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="loginPass" placeholder="••••••••" />
+      </div>
+      <div id="loginError" class="login-error"></div>
+      <button class="btn-primary" onclick="iniciarSesion()">Ingresar</button>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div id="dashboard" class="dashboard hidden">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../assets/logo.png" alt="Logo" onerror="this.style.display='none'" />
+        <div>
+          <span class="sidebar-nombre">Chocobar Hernando</span>
+          <span class="sidebar-prop">Admin Panel</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item activo" onclick="mostrarSeccion('propiedades', this)">
+          🏠 Propiedades
+        </button>
+        <button class="nav-item" onclick="mostrarSeccion('nueva', this)">
+          ➕ Nueva propiedad
+        </button>
+        <button class="nav-item" onclick="mostrarSeccion('tipos', this)">
+          🏷️ Tipos de propiedad
+        </button>
+      </nav>
+      <button class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
+    </aside>
+
+    <!-- Contenido -->
+    <main class="main-content">
+
+      <!-- SECCIÓN: LISTA DE PROPIEDADES -->
+      <section id="seccion-propiedades" class="seccion">
+        <div class="seccion-header">
+          <h2>Propiedades</h2>
+          <button class="btn-primary"
+            onclick="mostrarSeccion('nueva', document.querySelector('.nav-item:nth-child(2)'))">
+            + Nueva propiedad
+          </button>
+        </div>
+        <div class="filtros-admin">
+          <select id="filtroEstadoAdmin" onchange="renderTabla()">
+            <option value="todos">Todos los estados</option>
+            <option value="disponible">Disponible</option>
+            <option value="vendido">Vendido</option>
+            <option value="alquilado">Alquilado</option>
+            <option value="no_disponible">No disponible</option>
+          </select>
+          <select id="filtroOpAdmin" onchange="renderTabla()">
+            <option value="todos">Venta y alquiler</option>
+            <option value="venta">Solo venta</option>
+            <option value="alquiler">Solo alquiler</option>
+          </select>
+        </div>
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Operación</th>
+                <th>Estado</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaPropiedades"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN: NUEVA / EDITAR PROPIEDAD -->
+      <section id="seccion-nueva" class="seccion hidden">
+        <div class="seccion-header">
+          <h2 id="formTitulo">Nueva propiedad</h2>
+          <button class="btn-ghost"
+            onclick="mostrarSeccion('propiedades', document.querySelector('.nav-item:first-child'))">
+            ← Volver
+          </button>
+        </div>
+
+        <form class="prop-form" onsubmit="guardarPropiedad(event)">
+          <input type="hidden" id="propId" />
+
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Título *</label>
+              <input type="text" id="propTitulo" placeholder="Ej: Casa amplia en Yerba Buena" required />
+            </div>
+            <div class="form-group">
+              <label>Tipo de propiedad *</label>
+              <select id="propTipo" required>
+                <option value="">Seleccioná un tipo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Operación *</label>
+              <select id="propOperacion" required>
+                <option value="">Seleccioná</option>
+                <option value="venta">Venta</option>
+                <option value="alquiler">Alquiler</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado *</label>
+              <select id="propEstado" required>
+                <option value="disponible">Disponible</option>
+                <option value="vendido">Vendido</option>
+                <option value="alquilado">Alquilado</option>
+                <option value="no_disponible">No disponible</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Precio (USD)</label>
+              <input type="number" id="propPrecio" placeholder="Ej: 85000" min="0" />
+            </div>
+            <div class="form-group">
+              <label>Dirección</label>
+              <input type="text" id="propDireccion" placeholder="Ej: Av. Alem 500" />
+            </div>
+            <div class="form-group">
+              <label>Barrio</label>
+              <input type="text" id="propBarrio" placeholder="Ej: Yerba Buena" />
+            </div>
+            <div class="form-group">
+              <label>Ambientes</label>
+              <input type="number" id="propAmbientes" min="1" max="20" />
+            </div>
+            <div class="form-group">
+              <label>Dormitorios</label>
+              <input type="number" id="propDormitorios" min="0" max="20" />
+            </div>
+            <div class="form-group">
+              <label>Baños</label>
+              <input type="number" id="propBanos" min="0" max="20" />
+            </div>
+            <div class="form-group">
+              <label>m² totales</label>
+              <input type="number" id="propM2Total" min="0" step="0.01" />
+            </div>
+            <div class="form-group">
+              <label>m² cubiertos</label>
+              <input type="number" id="propM2Cub" min="0" step="0.01" />
+            </div>
+            <div class="form-group check-group">
+              <label>
+                <input type="checkbox" id="propCochera" />
+                Cochera
+              </label>
+              <label>
+                <input type="checkbox" id="propDestacada" />
+                Propiedad destacada ⭐
+              </label>
+            </div>
+            <div class="form-group full">
+              <label>Descripción</label>
+              <textarea id="propDesc" rows="4" placeholder="Descripción detallada de la propiedad..."></textarea>
+            </div>
+          </div>
+
+          <!-- Fotos -->
+          <div class="fotos-section">
+            <h3>Fotos</h3>
+            <div class="fotos-upload-area" onclick="document.getElementById('inputFotos').click()">
+              <div class="upload-icon">📁</div>
+              <p>Hacé click para subir fotos</p>
+              <span>JPG, PNG, WEBP — Máximo 5MB por foto</span>
+            </div>
+            <input type="file" id="inputFotos" multiple accept="image/*" style="display:none"
+              onchange="previsualizarFotos(event)" />
+            <div id="fotosPreview" class="fotos-preview"></div>
+            <div id="fotosExistentes" class="fotos-preview"></div>
+          </div>
+
+          <div id="formError" class="form-error"></div>
+          <div id="formSuccess" class="form-success"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-ghost"
+              onclick="mostrarSeccion('propiedades', document.querySelector('.nav-item:first-child'))">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary" id="btnGuardar">
+              Guardar propiedad
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- SECCIÓN: TIPOS DE PROPIEDAD -->
+      <section id="seccion-tipos" class="seccion hidden">
+        <div class="seccion-header">
+          <h2>Tipos de propiedad</h2>
+        </div>
+        <div class="tipos-layout">
+          <div class="tipos-form">
+            <div class="form-group">
+              <label>Nuevo tipo</label>
+              <div class="tipos-input-row">
+                <input type="text" id="nuevoTipo" placeholder="Ej: Quinta" />
+                <button class="btn-primary" onclick="agregarTipo()">Agregar</button>
+              </div>
+            </div>
+          </div>
+          <ul class="tipos-lista" id="tiposLista"></ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL CONFIRMAR ELIMINACIÓN -->
+  <div class="modal-overlay" id="modalEliminar">
+    <div class="modal-confirm">
+      <h3>¿Eliminar propiedad?</h3>
+      <p>Esta acción no se puede deshacer.</p>
+      <div class="modal-confirm-btns">
+        <button class="btn-ghost" onclick="cerrarModalEliminar()">Cancelar</button>
+        <button class="btn-danger" onclick="confirmarEliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

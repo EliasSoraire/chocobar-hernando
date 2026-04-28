@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Chocobar Hernando Propiedades | Inmobiliaria en Tucumán</title>
+    <meta name="description"
+        content="Inmobiliaria familiar en Tucumán con años de trayectoria. Compraventa, alquileres, tasaciones y asesoramiento inmobiliario. Matrícula C.I.:243" />
+    <meta name="keywords"
+        content="inmobiliaria tucuman, propiedades tucuman, casas en venta tucuman, departamentos alquiler tucuman, chocobar hernando, corredor inmobiliario tucuman" />
+    <meta name="author" content="Chocobar Hernando Propiedades" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://chocobarhernando.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chocobar Hernando Propiedades | Inmobiliaria en Tucumán" />
+    <meta property="og:description"
+        content="Compraventa, alquileres y tasaciones en Tucumán. Empresa familiar con trayectoria y profesionales matriculados." />
+    <meta property="og:url" content="https://chocobarhernando.vercel.app/" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Chocobar Hernando Propiedades",
+    "description": "Inmobiliaria familiar en Tucumán. Compraventa, alquileres, tasaciones y asesoramiento.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "San Martín 1051 - Piso 11 Of. H",
+      "addressLocality": "San Miguel de Tucumán",
+      "addressRegion": "Tucumán",
+      "addressCountry": "AR"
+    },
+    "telephone": "+543813638521",
+    "email": "chocobarhernandopro@gmail.com",
+    "url": "https://chocobarhernando.vercel.app/",
+    "sameAs": [
+      "https://www.facebook.com/share/18DddiEjLa/",
+      "https://www.instagram.com/chocobar.hernando",
+      "https://www.instagram.com/chocobar.hernandoprop"
+    ]
+  }
+  </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <img src="assets/logo.png" alt="Chocobar Hernando Propiedades" onerror="this.style.display='none'" />
+            <div class="nav-logo-text">
+                <span>Chocobar Hernando</span>
+                <span>Propiedades</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#propiedades">Propiedades</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li>
+                <a href="https://wa.me/543813638521" target="_blank" class="nav-wsp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.082a.75.75 0 0 0 .921.921l5.297-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.354l-.355-.21-3.676 1.012 1.034-3.574-.231-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" />
+                    </svg>
+                    WhatsApp
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <!-- Espacio para foto de portada -->
+        <div class="hero-bg-placeholder">
+            <img src="assets/portada.jpg" alt="Portada" class="hero-bg-img" onerror="this.style.display='none'" />
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✦ Matrícula Profesional C.I.:243</div>
+            <h1>Chocobar<br /><span>Hernando</span></h1>
+            <p class="hero-sub">Propiedades · Tucumán</p>
+            <p class="hero-desc">Empresa familiar con trayectoria y profesionales matriculados. Respaldados por FIRA y
+                el Colegio de Corredores Inmobiliarios de Tucumán.</p>
+            <div class="hero-btns">
+                <a href="#propiedades" class="btn-primary">Ver propiedades</a>
+                <a href="#quienes-somos" class="btn-outline">Quiénes somos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROPIEDADES ── -->
+    <section id="propiedades">
+        <div class="section-header">
+            <span class="section-tag">Nuestro portfolio</span>
+            <h2 class="section-title">Propiedades</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="filtros-wrap">
+            <div class="filtros" id="filtrosOperacion">
+                <button class="filtro-btn activo-operacion" onclick="setFiltroOperacion('todos', this)">Todos</button>
+                <button class="filtro-btn" onclick="setFiltroOperacion('venta', this)">Venta</button>
+                <button class="filtro-btn" onclick="setFiltroOperacion('alquiler', this)">Alquiler</button>
+            </div>
+            <div class="filtros" id="filtrosTipo">
+                <button class="filtro-btn activo" onclick="setFiltroTipo('todos', this)">Todos los tipos</button>
+            </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="propiedades-grid" id="propiedadesGrid">
+            <div class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+            <div class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+            <div class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── QUIÉNES SOMOS ── -->
+    <section id="quienes-somos">
+        <div class="quienes-inner">
+            <div class="quienes-left">
+                <span class="section-tag light">Nuestra historia</span>
+                <h2 class="section-title light">Quiénes<br />somos</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="quienes-right">
+                <p>Somos una empresa familiar, con muchos años de trayectoria y profesionales matriculados, capacitados
+                    para brindarte eficacia, seguridad jurídica, transparencia, y la tranquilidad a nuestros clientes de
+                    que sus operaciones están en buenas manos.</p>
+                <p>Respaldados por <strong>FIRA</strong> — la Federación Inmobiliaria de la República Argentina — y por
+                    el <strong>Colegio de Corredores Inmobiliarios de Tucumán</strong>, el cual cuenta con tribunales de
+                    ética.</p>
+                <p>Nos especializamos en compraventa y alquileres de inmuebles, tasaciones, asesoramiento inmobiliario,
+                    jurídico y financiero. Administración de consorcios y alquileres.</p>
+                <p class="quienes-destacado">Nos distingue LA CONFIABILIDAD, EL COMPROMISO Y EL PROFESIONALISMO.</p>
+                <div class="quienes-badges">
+                    <span class="quienes-badge">✓ FIRA</span>
+                    <span class="quienes-badge">✓ Colegio de Corredores</span>
+                    <span class="quienes-badge">✓ Matrícula C.I.:243</span>
+                    <span class="quienes-badge">✓ Empresa familiar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACTO ── -->
+    <section id="contacto">
+        <div class="section-header">
+            <span class="section-tag">Estamos para ayudarte</span>
+            <h2 class="section-title">Contacto</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="contacto-layout">
+            <!-- Datos de contacto -->
+            <div class="contacto-datos">
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">📍</div>
+                    <div>
+                        <div class="contacto-item-label">Dirección</div>
+                        <div class="contacto-item-valor">San Martín 1051, Piso 11 Of. H</div>
+                        <div class="contacto-item-sub">Con cita previa · San Miguel de Tucumán</div>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">📞</div>
+                    <div>
+                        <div class="contacto-item-label">Teléfono / WhatsApp</div>
+                        <a href="tel:3813638521" class="contacto-item-valor">381 363-8521</a>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">✉️</div>
+                    <div>
+                        <div class="contacto-item-label">Email</div>
+                        <a href="mailto:chocobarhernandopro@gmail.com"
+                            class="contacto-item-valor">chocobarhernandopro@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-item-icon">📱</div>
+                    <div>
+                        <div class="contacto-item-label">Redes sociales</div>
+                        <div class="contacto-redes">
+                            <a href="https://www.facebook.com/share/18DddiEjLa/" target="_blank"
+                                class="red-link">Facebook</a>
+                            <a href="https://www.instagram.com/chocobar.hernando" target="_blank"
+                                class="red-link">@chocobar.hernando</a>
+                            <a href="https://www.instagram.com/chocobar.hernandoprop" target="_blank"
+                                class="red-link">@chocobar.hernandoprop</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://wa.me/543813638521" target="_blank" class="btn-wsp-grande">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.082a.75.75 0 0 0 .921.921l5.297-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.354l-.355-.21-3.676 1.012 1.034-3.574-.231-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" />
+                    </svg>
+                    Escribinos por WhatsApp
+                </a>
+            </div>
+
+            <!-- Mapa próximamente -->
+            <div class="mapa-placeholder">
+                <div class="mapa-inner">
+                    <div class="mapa-icon">🗺️</div>
+                    <div class="mapa-titulo">Mapa interactivo</div>
+                    <div class="mapa-sub">Próximamente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col footer-brand">
+                <img src="assets/logo.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'" />
+                <div class="footer-brand-text">
+                    <span class="footer-nombre">Chocobar Hernando</span>
+                    <span class="footer-prop">Propiedades</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-titulo">Navegación</div>
+                <a href="#propiedades">Propiedades</a>
+                <a href="#quienes-somos">Quiénes somos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-titulo">Contacto</div>
+                <a href="tel:3813638521">381 363-8521</a>
+                <a href="mailto:chocobarhernandopro@gmail.com">chocobarhernandopro@gmail.com</a>
+                <span>San Martín 1051, Piso 11 Of. H</span>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-titulo">Redes sociales</div>
+                <a href="https://www.facebook.com/share/18DddiEjLa/" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/chocobar.hernando" target="_blank">Instagram</a>
+                <a href="https://www.instagram.com/chocobar.hernandoprop" target="_blank">Instagram 2</a>
+                <a href="https://wa.me/543813638521" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-copy">
+            © 2025 Chocobar Hernando Propiedades · Matrícula C.I.:243 · Todos los derechos reservados
+        </div>
+    </footer>
+
+    <!-- ── MODAL PROPIEDAD ── -->
+    <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h2 id="modalTitulo">—</h2>
+                <button class="modal-close" onclick="cerrarModalBtn()">✕</button>
+            </div>
+            <div class="modal-gallery" id="modalGallery">
+                <img id="modalImgPrincipal" src="" alt="" />
+                <button class="gallery-nav gallery-prev" onclick="galeriaAnterior()">‹</button>
+                <button class="gallery-nav gallery-next" onclick="galeriaSiguiente()">›</button>
+                <div class="gallery-counter" id="galeriaCounter">1 / 1</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info-grid" id="modalInfoGrid"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-precio" id="modalPrecio">—</div>
+                <a id="modalBtnWsp" href="#" target="_blank" class="btn-wsp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.082a.75.75 0 0 0 .921.921l5.297-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.354l-.355-.21-3.676 1.012 1.034-3.574-.231-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" />
+                    </svg>
+                    Consultar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
