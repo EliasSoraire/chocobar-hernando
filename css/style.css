@@ -867,78 +867,145 @@ a.contacto-item-valor:hover {
 
 /* ── FOOTER ── */
 footer {
-    background: var(--azul-marino);
-    border-top: 1px solid rgba(74, 159, 212, 0.15);
+    background: var(--beige);
+    border-top: 1px solid var(--beige-oscuro);
     padding: 3rem 2rem 1.5rem;
 }
 
-.footer-inner {
+.footer-cards {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
 }
 
-.footer-col {
+.footer-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--beige-oscuro);
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.75rem;
+    box-shadow: 0 2px 8px rgba(10, 22, 40, 0.05);
 }
 
-.footer-brand {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+.footer-card-center {
+    gap: 1rem;
 }
 
 .footer-logo-img {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     object-fit: contain;
     border-radius: 50%;
-    border: 2px solid rgba(74, 159, 212, 0.3);
+    border: 2px solid var(--beige-oscuro);
+    margin-bottom: 0.25rem;
 }
 
-.footer-brand-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-nombre {
+.footer-card-titulo {
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--blanco);
+    color: var(--azul-marino);
 }
 
-.footer-prop {
-    font-size: 0.65rem;
-    color: var(--celeste);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.footer-col-titulo {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--plateado);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-}
-
-.footer-col a,
-.footer-col span {
+.footer-contacto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.55);
+}
+
+.footer-icon {
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+.footer-contacto-item a,
+.footer-contacto-item span {
+    color: var(--texto-medio);
     text-decoration: none;
+    line-height: 1.5;
     transition: color 0.2s;
 }
 
-.footer-col a:hover {
+.footer-contacto-item a:hover {
+    color: var(--celeste);
+}
+
+.footer-desc {
+    font-size: 0.88rem;
+    color: var(--texto-medio);
+    line-height: 1.7;
+}
+
+.footer-matricula {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--celeste);
+    letter-spacing: 0.3px;
+}
+
+.footer-redes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.footer-red-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--beige-oscuro);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--texto-oscuro);
+    transition: all 0.2s;
+    background: white;
+}
+
+.footer-red-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer-red-wsp:hover {
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.footer-red-ig:hover {
+    border-color: #e1306c;
+    color: #e1306c;
+}
+
+.footer-red-fb:hover {
+    border-color: #1877f2;
+    color: #1877f2;
+}
+
+.footer-tipos {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-tipos li {
+    font-size: 0.88rem;
+    color: var(--texto-medio);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.footer-tipos li:hover {
     color: var(--celeste);
 }
 
@@ -947,9 +1014,10 @@ footer {
     margin: 0 auto;
     text-align: center;
     font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    color: var(--texto-medio);
+    border-top: 1px solid var(--beige-oscuro);
     padding-top: 1.5rem;
+    line-height: 1.8;
 }
 
 /* ── MODAL ── */
@@ -1128,8 +1196,8 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-    .footer-inner {
-        grid-template-columns: 1fr 1fr;
+    .footer-cards {
+        grid-template-columns: 1fr;
     }
 
     .quienes-inner {
@@ -1172,9 +1240,8 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .footer-inner {
+    .footer-cards {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
 
     .footer-brand {
