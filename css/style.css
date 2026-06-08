@@ -724,7 +724,7 @@ nav {
 /* CAMBIO: foto grande sin recorte */
 .quienes-foto-wrap {
   width: 100%;
-  max-width: 700px;
+  max-width: 280px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0,0,0,0.4);
@@ -732,8 +732,8 @@ nav {
 
 .quienes-foto {
   width: 100%;
-  height: auto;         /* CAMBIO: alto automático para no recortar */
-  object-fit: contain;  /* CAMBIO: contain para foto completa */
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 

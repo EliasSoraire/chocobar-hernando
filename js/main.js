@@ -75,7 +75,7 @@ async function cargarPropiedades() {
     document.getElementById("propiedadesGrid").innerHTML = `
       <div class="empty-state">
         <img src="assets/logo.png" alt="Chocobar Hernando" class="empty-logo" onerror="this.style.display='none'" />
-        <p>No se pudieron cargar las propiedades. Intentá de nuevo más tarde.</p>
+        <p>Próximamente nuevas propiedades en esta categoría</p>
       </div>`;
   }
 }
