@@ -74,9 +74,7 @@ async function cargarPropiedades() {
     console.error("Error cargando propiedades:", err);
     document.getElementById("propiedadesGrid").innerHTML = `
       <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
+        <img src="assets/logo.png" alt="Chocobar Hernando" class="empty-logo" onerror="this.style.display='none'" />
         <p>No se pudieron cargar las propiedades. Intentá de nuevo más tarde.</p>
       </div>`;
   }
@@ -98,13 +96,11 @@ function renderPropiedades() {
   }
 
   if (filtradas.length === 0) {
+    // CAMBIO: logo en lugar de ícono de casita, nuevo mensaje
     grid.innerHTML = `
       <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <p>No hay propiedades en esta categoría</p>
+        <img src="assets/logo.png" alt="Chocobar Hernando" class="empty-logo" onerror="this.style.display='none'" />
+        <p>Próximamente nuevas propiedades en esta categoría</p>
       </div>`;
     return;
   }
@@ -126,12 +122,7 @@ function buildCard(p) {
   const imgHTML = fotoPrincipal
     ? `<img class="card-img" src="${fotoPrincipal.url}" alt="${escapeHTML(p.titulo)}" loading="lazy" />`
     : `<div class="card-img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span>Sin fotos</span>
+        <img src="assets/logo.png" alt="Chocobar Hernando" class="card-logo-placeholder" onerror="this.style.display='none'" />
        </div>`;
 
   // Overlay estado
@@ -283,18 +274,12 @@ function actualizarGaleria() {
 
   if (fotosModal.length === 0) {
     gallery.innerHTML = `
-      <div class="card-img-placeholder" style="height:100%">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:48px;height:48px;opacity:0.3">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span>Sin fotos disponibles</span>
+      <div class="card-img-placeholder" style="height:100%;background:var(--beige-oscuro)">
+        <img src="assets/logo.png" alt="Chocobar Hernando" style="width:80px;height:80px;object-fit:contain;opacity:0.4" onerror="this.style.display='none'" />
       </div>`;
     return;
   }
 
-  // Restaurar estructura si fue reemplazada
   if (!document.getElementById("modalImgPrincipal")) {
     gallery.innerHTML = `
       <img id="modalImgPrincipal" src="" alt="" />
@@ -331,7 +316,6 @@ function cerrarModalBtn() {
   document.body.style.overflow = "";
 }
 
-// Cerrar modal con tecla Escape
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") cerrarModalBtn();
 });
@@ -344,7 +328,6 @@ function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("open");
 }
 
-// Cerrar menú al hacer click en un link
 document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => {
     document.getElementById("navLinks").classList.remove("open");

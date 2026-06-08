@@ -84,19 +84,22 @@
 
   <!-- ── HERO ── -->
   <section class="hero">
-    <!-- Espacio para foto de portada -->
     <div class="hero-bg-placeholder">
       <img src="assets/portada.jpg" alt="Portada" class="hero-bg-img" onerror="this.style.display='none'" />
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge">✦ Matrícula Profesional C.I.:243</div>
-      <h1>Chocobar<br/><span>Hernando</span></h1>
-      <p class="hero-sub">Propiedades · Tucumán</p>
-      <p class="hero-desc">Empresa familiar con trayectoria y profesionales matriculados. Respaldados por FIRA y el Colegio de Corredores Inmobiliarios de Tucumán.</p>
+      <!-- CAMBIO: logo con fondo transparente, más grande y subido -->
+      <img src="assets/logo.png" alt="Logo Chocobar Hernando" class="hero-logo" onerror="this.style.display='none'" />
+      <h1>Chocobar Hernando<br/><span>Propiedades</span></h1>
+      <p class="hero-sub">Inmobiliaria · Tucumán</p>
+      <!-- CAMBIO: nuevo copy del hero -->
+      <p class="hero-desc">Empresa familiar con una sólida trayectoria y profesionales matriculados. Comprometidos con la seguridad jurídica y excelencia en cada operación. Tu tranquilidad empieza con una buena decisión.</p>
       <div class="hero-btns">
         <a href="#propiedades" class="btn-primary">Ver propiedades</a>
-        <a href="#quienes-somos" class="btn-outline">Quiénes somos</a>
+        <!-- CAMBIO: botón solicitar asesoramiento → mailto -->
+        <a href="mailto:chocobarhernandopro@gmail.com?subject=Solicitud%20de%20asesoramiento&body=Hola%2C%20me%20gustar%C3%ADa%20recibir%20asesoramiento%20inmobiliario." class="btn-outline">Solicitar asesoramiento</a>
       </div>
     </div>
   </section>
@@ -127,28 +130,48 @@
       <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line"></div></div></div>
       <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line"></div></div></div>
     </div>
+
+    <!-- CAMBIO: nuevo botón captación de clientes -->
+    <div class="vender-banner">
+      <div class="vender-banner-inner">
+        <div class="vender-banner-text">
+          <span class="vender-banner-titulo">¿Querés vender o alquilar tu propiedad?</span>
+          <span class="vender-banner-sub">Contanos sobre tu inmueble y te asesoramos sin cargo.</span>
+        </div>
+        <a href="mailto:chocobarhernandopro@gmail.com?subject=Quiero%20vender%20o%20alquilar%20mi%20propiedad&body=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20vender%20o%20alquilar%20mi%20propiedad." class="btn-primary">
+          Consultar ahora
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- ── QUIÉNES SOMOS ── -->
+  <!-- CAMBIO: foto arriba, texto abajo, foto completa sin recorte -->
   <section id="quienes-somos">
     <div class="quienes-inner">
+      <div class="quienes-foto-wrap">
+        <img src="assets/equipo.jpg" alt="Equipo Chocobar Hernando" class="quienes-foto" />
+      </div>
       <div class="quienes-left">
         <span class="section-tag light">Nuestra historia</span>
         <h2 class="section-title light">Quiénes<br/>somos</h2>
         <div class="section-line"></div>
-        <p>Somos una empresa familiar, con muchos años de trayectoria y profesionales matriculados, capacitados para brindarte eficacia, seguridad jurídica, transparencia, y la tranquilidad a nuestros clientes de que sus operaciones están en buenas manos.</p>
-        <p>Respaldados por <strong>FIRA</strong> — la Federación Inmobiliaria de la República Argentina — y por el <strong>Colegio de Corredores Inmobiliarios de Tucumán</strong>, el cual cuenta con tribunales de ética.</p>
-        <p>Nos especializamos en compraventa y alquileres de inmuebles, tasaciones, asesoramiento inmobiliario, jurídico y financiero. Administración de consorcios y alquileres.</p>
-        <p class="quienes-destacado">Nos distingue LA CONFIABILIDAD, EL COMPROMISO Y EL PROFESIONALISMO.</p>
+        <!-- CAMBIO: nuevo texto completo del cliente -->
+        <p>Somos una empresa familiar con una sólida trayectoria en el mercado inmobiliario. Nuestro equipo está conformado por <strong>profesionales matriculados y capacitados</strong> para brindar la mayor eficacia, seguridad jurídica y total transparencia en cada operación.</p>
+        <p>Nos especializamos en:</p>
+        <ul class="quienes-lista">
+          <li>Compraventa y alquileres de inmuebles.</li>
+          <li>Tasaciones profesionales.</li>
+          <li>Administración de consorcios y alquileres.</li>
+          <li>Asesoramiento integral: inmobiliario, jurídico y financiero.</li>
+        </ul>
+        <p>Contamos con el respaldo de <strong>FIRA</strong> (Federación Inmobiliaria de la República Argentina), entidad de alcance nacional que nuclea a cámaras y colegios del sector. Estamos regulados por el <strong>Colegio de Corredores Inmobiliarios de Tucumán</strong>, lo que garantiza el cumplimiento de normas en el ejercicio profesional, contando con tribunales de Ética y Disciplina.</p>
         <div class="quienes-badges">
           <span class="quienes-badge">✓ FIRA</span>
           <span class="quienes-badge">✓ Colegio de Corredores</span>
           <span class="quienes-badge">✓ Matrícula C.I.:243</span>
           <span class="quienes-badge">✓ Empresa familiar</span>
         </div>
-      </div>
-      <div class="quienes-foto-wrap">
-        <img src="assets/equipo.jpg" alt="Equipo Chocobar Hernando" class="quienes-foto" />
       </div>
     </div>
   </section>
@@ -185,7 +208,8 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.082a.75.75 0 0 0 .921.921l5.297-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.354l-.355-.21-3.676 1.012 1.034-3.574-.231-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
             WhatsApp
           </a>
-          <a href="https://www.instagram.com/chocobar.hernandoprop" target="_blank" class="footer-red-btn footer-red-ig">
+          <!-- CAMBIO: Instagram principal correcto -->
+          <a href="https://www.instagram.com/chocobar.hernando" target="_blank" class="footer-red-btn footer-red-ig">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             Instagram
           </a>

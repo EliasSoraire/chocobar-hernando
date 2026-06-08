@@ -162,7 +162,8 @@ nav {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 120px 2rem 80px;
+  /* CAMBIO: más padding-top para subir el contenido */
+  padding: 100px 2rem 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,24 +182,27 @@ nav {
   font-weight: 500;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   animation: fadeDown 0.6s ease both;
 }
 
+/* CAMBIO: logo más grande con fondo transparente */
 .hero-logo {
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   border-radius: 50%;
-  border: 3px solid rgba(74,159,212,0.4);
-  box-shadow: 0 0 40px rgba(74,159,212,0.2);
-  margin-bottom: 2rem;
+  /* Sin border ni box-shadow visible para que el fondo transparente se vea bien */
+  border: none;
+  box-shadow: none;
+  margin-bottom: 1.75rem;
   animation: fadeDown 0.7s ease both;
 }
 
+/* CAMBIO: título más grande */
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
   font-weight: 700;
   color: var(--blanco);
   line-height: 1.1;
@@ -224,7 +228,7 @@ nav {
 }
 
 .hero-desc {
-  max-width: 520px;
+  max-width: 540px;
   color: rgba(255,255,255,0.65);
   font-size: 1rem;
   line-height: 1.75;
@@ -447,6 +451,7 @@ nav {
 
 .card:hover .card-img { transform: scale(1.04); }
 
+/* CAMBIO: placeholder con logo en lugar de SVG casita */
 .card-img-placeholder {
   width: 100%;
   height: 100%;
@@ -454,19 +459,14 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  color: var(--plateado);
+  background: var(--beige-oscuro);
 }
 
-.card-img-placeholder svg {
-  width: 48px;
-  height: 48px;
-  opacity: 0.35;
-}
-
-.card-img-placeholder span {
-  font-size: 0.78rem;
-  opacity: 0.5;
+.card-logo-placeholder {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  opacity: 0.3;
 }
 
 /* Overlay estado */
@@ -636,13 +636,63 @@ nav {
   padding: 4rem 2rem;
   color: var(--texto-medio);
   grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.empty-state svg {
-  width: 64px;
-  height: 64px;
-  opacity: 0.25;
-  margin-bottom: 1rem;
+/* CAMBIO: logo en empty state */
+.empty-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  opacity: 0.3;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  color: var(--texto-medio);
+}
+
+/* ── BANNER VENDER / ALQUILAR ── */
+.vender-banner {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-medio) 100%);
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 20px rgba(10,22,40,0.15);
+}
+
+.vender-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.vender-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vender-banner-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blanco);
+}
+
+.vender-banner-sub {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+}
+
+.vender-banner .btn-primary {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ── QUIÉNES SOMOS ── */
@@ -661,13 +711,35 @@ nav {
   pointer-events: none;
 }
 
+/* CAMBIO: layout vertical — foto arriba, texto abajo */
 .quienes-inner {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
   align-items: center;
+}
+
+/* CAMBIO: foto grande sin recorte */
+.quienes-foto-wrap {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+
+.quienes-foto {
+  width: 100%;
+  height: auto;         /* CAMBIO: alto automático para no recortar */
+  object-fit: contain;  /* CAMBIO: contain para foto completa */
+  display: block;
+}
+
+.quienes-left {
+  width: 100%;
+  max-width: 700px;
 }
 
 .quienes-left .section-line { margin: 0 0 1.5rem; }
@@ -681,19 +753,30 @@ nav {
 
 .quienes-left strong { color: var(--celeste-claro); font-weight: 600; }
 
-.quienes-foto-wrap {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+/* CAMBIO: lista de especialidades */
+.quienes-lista {
+  list-style: none;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.quienes-foto {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+.quienes-lista li {
+  color: rgba(255,255,255,0.72);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.quienes-lista li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--celeste);
+  font-size: 0.7rem;
+  top: 4px;
 }
 
 .quienes-destacado {
@@ -1007,9 +1090,6 @@ footer {
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .footer-cards { grid-template-columns: 1fr; }
-  .quienes-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .quienes-foto { height: 320px; }
-  .quienes-foto-wrap { order: -1; }
 }
 
 @media (max-width: 768px) {
@@ -1030,6 +1110,10 @@ footer {
 
   .propiedades-grid { grid-template-columns: 1fr; }
   .footer-cards { grid-template-columns: 1fr; }
+
+  .vender-banner { padding: 1.5rem; }
+  .vender-banner-inner { flex-direction: column; text-align: center; }
+  .vender-banner .btn-primary { width: 100%; text-align: center; }
 
   /* Modal en móvil */
   .modal-overlay { padding: 0; align-items: flex-end; }
