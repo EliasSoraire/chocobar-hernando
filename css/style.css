@@ -828,10 +828,10 @@ nav {
 }
 
 .institucion-logo {
-  width: 56px;
-  height: 56px;
-  max-width: 56px;
-  max-height: 56px;
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
+  max-height: 80px;
   object-fit: contain;
   border-radius: 6px;
   flex-shrink: 0;
@@ -1175,4 +1175,11 @@ footer {
   }
   .btn-wsp { justify-content: center; }
   .modal-info-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .institucion-logo {
+  width: 56px;
+  height: 56px;
+  max-width: 56px;
+  max-height: 56px;
+  }
 }
