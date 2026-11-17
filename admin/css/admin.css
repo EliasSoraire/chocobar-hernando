@@ -67,6 +67,14 @@ body {
   margin: 0 auto;
 }
 
+.captcha-box {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+}
+
+.captcha-box:empty { display: none; }
+
 .login-titulo {
   font-family: 'Playfair Display', serif;
   font-size: 1.4rem;

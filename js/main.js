@@ -120,7 +120,7 @@ function buildCard(p) {
 
   // Imagen
   const imgHTML = fotoPrincipal
-    ? `<img class="card-img" src="${fotoPrincipal.url}" alt="${escapeHTML(p.titulo)}" loading="lazy" />`
+    ? `<img class="card-img" src="${escapeHTML(fotoPrincipal.url)}" alt="${escapeHTML(p.titulo)}" loading="lazy" />`
     : `<div class="card-img-placeholder">
         <img src="assets/logo.png" alt="Chocobar Hernando" class="card-logo-placeholder" onerror="this.style.display='none'" />
        </div>`;
@@ -170,7 +170,7 @@ function buildCard(p) {
         ${p.destacada ? '<span class="badge-destacada">⭐ Destacada</span>' : ""}
       </div>
       <div class="card-body">
-        <div class="card-tipo">${p.tipos_propiedad?.nombre || ""}</div>
+        <div class="card-tipo">${escapeHTML(p.tipos_propiedad?.nombre)}</div>
         <h3 class="card-titulo">${escapeHTML(p.titulo)}</h3>
         ${p.direccion ? `<div class="card-direccion">📍 ${escapeHTML(p.direccion)}${p.barrio ? ", " + escapeHTML(p.barrio) : ""}</div>` : ""}
         ${p.descripcion ? `<p class="card-descripcion">${escapeHTML(p.descripcion)}</p>` : ""}
@@ -258,7 +258,7 @@ function abrirModal(id) {
     .map(
       ([v, l]) => `
       <div class="info-chip">
-        <div class="info-chip-val">${v}</div>
+        <div class="info-chip-val">${escapeHTML(v)}</div>
         <div class="info-chip-label">${l}</div>
       </div>`,
     )
@@ -352,12 +352,13 @@ function ordenarFotos(fotos) {
 }
 
 function escapeHTML(str) {
-  if (!str) return "";
-  return str
+  if (str === null || str === undefined) return "";
+  return String(str)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function iconoWsp(size = 16) {

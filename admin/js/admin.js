@@ -9,6 +9,46 @@ const SUPABASE_KEY =
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// ── CAPTCHA (Cloudflare Turnstile) ──
+// Pegá acá la "Site Key" de Turnstile. Si queda vacía, el login funciona sin captcha.
+const TURNSTILE_SITE_KEY = "";
+let captchaToken = null;
+let captchaWidgetId = null;
+
+function cargarCaptcha() {
+  if (!TURNSTILE_SITE_KEY) return;
+  window.onTurnstileLoad = () => {
+    captchaWidgetId = turnstile.render("#captchaBox", {
+      sitekey: TURNSTILE_SITE_KEY,
+      language: "es",
+      callback: (token) => (captchaToken = token),
+      "expired-callback": () => (captchaToken = null),
+      "error-callback": () => (captchaToken = null),
+    });
+  };
+  const s = document.createElement("script");
+  s.src =
+    "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad";
+  s.async = true;
+  document.head.appendChild(s);
+}
+
+function resetCaptcha() {
+  captchaToken = null;
+  if (captchaWidgetId !== null && window.turnstile) turnstile.reset(captchaWidgetId);
+}
+
+// ── Escapar texto antes de meterlo en HTML ──
+function escapeHTML(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // ── ESTADO ──
 let propiedades = [];
 let tipos = [];
@@ -20,6 +60,7 @@ let propIdEliminar = null;
 // ── INIT ──
 document.addEventListener("DOMContentLoaded", () => {
   verificarSesion();
+  cargarCaptcha();
 });
 
 // ═══════════════════════════════
@@ -46,7 +87,17 @@ async function iniciarSesion() {
     return;
   }
 
-  const { error } = await db.auth.signInWithPassword({ email, password: pass });
+  if (TURNSTILE_SITE_KEY && !captchaToken) {
+    errEl.textContent = "Esperá a que se complete la verificación de seguridad.";
+    return;
+  }
+
+  const { error } = await db.auth.signInWithPassword({
+    email,
+    password: pass,
+    options: captchaToken ? { captchaToken } : undefined,
+  });
+  resetCaptcha(); // cada token de captcha sirve una sola vez
   if (error) {
     errEl.textContent = "Email o contraseña incorrectos.";
     return;
@@ -134,7 +185,7 @@ function renderTipos() {
     .map(
       (t) => `
     <li class="tipo-item">
-      <span>${t.nombre}</span>
+      <span>${escapeHTML(t.nombre)}</span>
       <button onclick="eliminarTipo(${t.id})">Eliminar</button>
     </li>`,
     )
@@ -211,14 +262,14 @@ function renderTabla() {
         : "—";
 
       const fotoHTML = foto
-        ? `<img src="${foto.url}" class="tabla-foto" alt="${p.titulo}" />`
+        ? `<img src="${escapeHTML(foto.url)}" class="tabla-foto" alt="${escapeHTML(p.titulo)}" />`
         : `<div class="tabla-foto-placeholder">🏠</div>`;
 
       return `
       <tr>
         <td>${fotoHTML}</td>
-        <td><strong>${p.titulo}</strong>${p.direccion ? `<br/><small style="color:var(--texto-medio)">${p.direccion}</small>` : ""}</td>
-        <td>${p.tipos_propiedad?.nombre || "—"}</td>
+        <td><strong>${escapeHTML(p.titulo)}</strong>${p.direccion ? `<br/><small style="color:var(--texto-medio)">${escapeHTML(p.direccion)}</small>` : ""}</td>
+        <td>${escapeHTML(p.tipos_propiedad?.nombre) || "—"}</td>
         <td><span class="badge badge-${p.operacion}">${p.operacion === "venta" ? "Venta" : "Alquiler"}</span></td>
         <td><span class="badge badge-${p.estado}">${labelEstado(p.estado)}</span></td>
         <td>${precio}</td>
@@ -445,10 +496,10 @@ function renderFotosExistentes() {
     .map(
       (foto, idx) => `
     <div class="foto-item">
-      <img src="${foto.url}" class="${foto.es_principal ? "principal" : ""}" alt="foto existente" />
+      <img src="${escapeHTML(foto.url)}" class="${foto.es_principal ? "principal" : ""}" alt="foto existente" />
       <div class="foto-item-btns">
         <button class="foto-btn principal-btn" title="Hacer principal" onclick="setPrincipalExistente(${idx})">★</button>
-        <button class="foto-btn" title="Eliminar" onclick="eliminarFotoExistente('${foto.url}', ${idx})">✕</button>
+        <button class="foto-btn" title="Eliminar" onclick="eliminarFotoExistente(${idx})">✕</button>
       </div>
       ${foto.es_principal ? '<div class="foto-label-principal">PRINCIPAL</div>' : ""}
     </div>`,
@@ -498,7 +549,9 @@ function eliminarFotoNueva(idx) {
   renderFotosNuevas();
 }
 
-async function eliminarFotoExistente(url, idx) {
+async function eliminarFotoExistente(idx) {
+  const url = fotosExistentes[idx]?.url;
+  if (!url) return;
   const propId = document.getElementById("propId").value;
   if (propId) {
     await db.from("fotos_propiedad").delete().eq("url", url);
