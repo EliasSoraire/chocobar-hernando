@@ -52,10 +52,10 @@ nav {
 }
 
 .nav-logo img {
-  height: 48px;
-  width: 48px;
+  height: 42px;
+  width: auto;
+  max-width: 60vw;
   object-fit: contain;
-  border-radius: 50%;
 }
 
 .nav-logo-text {
@@ -188,10 +188,11 @@ nav {
 
 /* CAMBIO: logo más grande con fondo transparente */
 .hero-logo {
-  width: 150px;
-  height: 150px;
+  width: 260px;
+  max-width: 70vw;
+  height: auto;
   object-fit: contain;
-  border-radius: 50%;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
   /* Sin border ni box-shadow visible para que el fondo transparente se vea bien */
   border: none;
   box-shadow: none;
@@ -873,11 +874,9 @@ footer {
 .footer-card-center { gap: 1rem; }
 
 .footer-logo-img {
-  width: 64px;
-  height: 64px;
+  width: 120px;
+  height: auto;
   object-fit: contain;
-  border-radius: 50%;
-  border: 2px solid var(--beige-oscuro);
   margin-bottom: 0.25rem;
 }
 

@@ -61,12 +61,10 @@ body {
 }
 
 .login-logo {
-  width: 72px;
-  height: 72px;
+  width: 140px;
+  height: auto;
   object-fit: contain;
-  border-radius: 50%;
   margin: 0 auto;
-  border: 2px solid var(--gris);
 }
 
 .login-titulo {
@@ -120,11 +118,9 @@ body {
 }
 
 .sidebar-logo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 64px;
+  height: auto;
   object-fit: contain;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
 }
 
