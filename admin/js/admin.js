@@ -11,7 +11,7 @@ const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── CAPTCHA (Cloudflare Turnstile) ──
 // Pegá acá la "Site Key" de Turnstile. Si queda vacía, el login funciona sin captcha.
-const TURNSTILE_SITE_KEY = "";
+const TURNSTILE_SITE_KEY = "0x4AAAAAAGGDD-HaghzkBsF9";
 let captchaToken = null;
 let captchaWidgetId = null;
 
@@ -99,11 +99,28 @@ async function iniciarSesion() {
   });
   resetCaptcha(); // cada token de captcha sirve una sola vez
   if (error) {
-    errEl.textContent = "Email o contraseña incorrectos.";
+    console.error("Error de login:", error);
+    errEl.textContent = mensajeErrorLogin(error);
     return;
   }
 
   mostrarDashboard();
+}
+
+function mensajeErrorLogin(error) {
+  const msg = (error.message || "").toLowerCase();
+  const code = error.code || "";
+  if (code === "invalid_credentials" || msg.includes("invalid login credentials"))
+    return "Email o contraseña incorrectos.";
+  if (code === "email_not_confirmed" || msg.includes("email not confirmed"))
+    return "El usuario no está confirmado. Confirmalo en Supabase (Authentication → Users).";
+  if (msg.includes("captcha"))
+    return "Falló la verificación del captcha. Revisá la Site Key / Secret Key de Turnstile.";
+  if (error.status === 429 || msg.includes("rate limit"))
+    return "Demasiados intentos. Esperá unos minutos y probá de nuevo.";
+  if (msg.includes("failed to fetch") || msg.includes("network"))
+    return "No se pudo conectar con el servidor. Revisá tu conexión.";
+  return "Error: " + (error.message || "desconocido");
 }
 
 async function cerrarSesion() {
