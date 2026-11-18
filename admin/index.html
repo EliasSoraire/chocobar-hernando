@@ -52,13 +52,13 @@
       </div>
       <nav class="sidebar-nav">
         <button class="nav-item activo" onclick="mostrarSeccion('propiedades', this)">
-          🏠 Propiedades
+          <span class="nav-ico">🏠</span><span class="nav-txt">Propiedades</span>
         </button>
         <button class="nav-item" onclick="mostrarSeccion('nueva', this)">
-          ➕ Nueva propiedad
+          <span class="nav-ico">➕</span><span class="nav-txt">Nueva<span class="solo-desktop"> propiedad</span></span>
         </button>
         <button class="nav-item" onclick="mostrarSeccion('tipos', this)">
-          🏷️ Tipos de propiedad
+          <span class="nav-ico">🏷️</span><span class="nav-txt">Tipos<span class="solo-desktop"> de propiedad</span></span>
         </button>
       </nav>
       <button class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -161,27 +161,27 @@
               <label>Barrio</label>
               <input type="text" id="propBarrio" placeholder="Ej: Yerba Buena" />
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-chico">
               <label>Ambientes</label>
               <input type="number" id="propAmbientes" min="1" max="20" />
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-chico">
               <label>Dormitorios</label>
               <input type="number" id="propDormitorios" min="0" max="20" />
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-chico">
               <label>Baños</label>
               <input type="number" id="propBanos" min="0" max="20" />
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-chico">
               <label>m² totales</label>
               <input type="number" id="propM2Total" min="0" step="0.01" />
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-chico">
               <label>m² cubiertos</label>
               <input type="number" id="propM2Cub" min="0" step="0.01" />
             </div>
-            <div class="form-group check-group">
+            <div class="form-group check-group full-mobile">
               <label>
                 <input type="checkbox" id="propCochera" />
                 Cochera
@@ -202,7 +202,7 @@
             <h3>Fotos</h3>
             <div class="fotos-upload-area" onclick="document.getElementById('inputFotos').click()">
               <div class="upload-icon">📁</div>
-              <p>Hacé click para subir fotos</p>
+              <p><span class="solo-desktop">Hacé click</span><span class="solo-mobile">Tocá acá</span> para subir fotos</p>
               <span>JPG, PNG, WEBP — Máximo 5MB por foto</span>
             </div>
             <input type="file" id="inputFotos" multiple accept="image/*" style="display:none"

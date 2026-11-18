@@ -11,7 +11,7 @@ const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── CAPTCHA (Cloudflare Turnstile) ──
 // Pegá acá la "Site Key" de Turnstile. Si queda vacía, el login funciona sin captcha.
-const TURNSTILE_SITE_KEY = "0x4AAAAAAGGDD-HaghzkBsF9";
+const TURNSTILE_SITE_KEY = "";
 let captchaToken = null;
 let captchaWidgetId = null;
 
@@ -166,6 +166,7 @@ function mostrarSeccion(nombre, btnActivo) {
     document.getElementById("formTitulo").textContent = "Nueva propiedad";
   }
   if (nombre === "tipos") renderTipos();
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 // ═══════════════════════════════
@@ -266,7 +267,7 @@ function renderTabla() {
   const tbody = document.getElementById("tablaPropiedades");
 
   if (lista.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--texto-medio)">No hay propiedades</td></tr>`;
+    tbody.innerHTML = `<tr class="fila-vacia"><td colspan="7" style="text-align:center;padding:2rem;color:var(--texto-medio)">No hay propiedades</td></tr>`;
     return;
   }
 
@@ -284,13 +285,13 @@ function renderTabla() {
 
       return `
       <tr>
-        <td>${fotoHTML}</td>
-        <td><strong>${escapeHTML(p.titulo)}</strong>${p.direccion ? `<br/><small style="color:var(--texto-medio)">${escapeHTML(p.direccion)}</small>` : ""}</td>
-        <td>${escapeHTML(p.tipos_propiedad?.nombre) || "—"}</td>
-        <td><span class="badge badge-${p.operacion}">${p.operacion === "venta" ? "Venta" : "Alquiler"}</span></td>
-        <td><span class="badge badge-${p.estado}">${labelEstado(p.estado)}</span></td>
-        <td>${precio}</td>
-        <td>
+        <td class="col-foto">${fotoHTML}</td>
+        <td class="col-titulo"><strong>${escapeHTML(p.titulo)}</strong>${p.direccion ? `<br/><small style="color:var(--texto-medio)">${escapeHTML(p.direccion)}</small>` : ""}</td>
+        <td class="col-tipo">${escapeHTML(p.tipos_propiedad?.nombre) || "—"}</td>
+        <td class="col-op"><span class="badge badge-${p.operacion}">${p.operacion === "venta" ? "Venta" : "Alquiler"}</span></td>
+        <td class="col-estado"><span class="badge badge-${p.estado}">${labelEstado(p.estado)}</span></td>
+        <td class="col-precio">${precio}</td>
+        <td class="col-acciones">
           <div class="acciones">
             <button class="btn-accion btn-editar" onclick="editarPropiedad('${p.id}')">Editar</button>
             <button class="btn-accion btn-eliminar" onclick="abrirModalEliminar('${p.id}')">Eliminar</button>

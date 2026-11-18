@@ -41,6 +41,7 @@ body {
 /* ── LOGIN ── */
 .login-screen {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -549,7 +550,7 @@ body {
   margin-bottom: 4px;
 }
 
-.fotos-upload-area span {
+.fotos-upload-area > span {
   font-size: 0.78rem;
   color: var(--texto-medio);
 }
@@ -752,26 +753,296 @@ body {
   justify-content: center;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+
+.solo-mobile { display: none; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-ico { width: 1.2em; text-align: center; flex-shrink: 0; }
+
+.tabla-foto { display: block; }
+
+.form-group input,
+.form-group select,
+.form-group textarea { width: 100%; min-width: 0; }
+
+.form-group { min-width: 0; }
+
+.col-precio { white-space: nowrap; font-weight: 600; }
+
+/* ── TABLET: menú lateral más angosto ── */
+@media (max-width: 1100px) {
+  :root { --sidebar-w: 200px; }
+
+  .main-content { padding: 1.5rem; }
+
+  .sidebar-logo { flex-direction: column; align-items: flex-start; }
+
+  .tabla th,
+  .tabla td { padding: 10px 12px; }
+
+  /* La columna "Tipo" se esconde en tablet para que entre la tabla */
+  .tabla th:nth-child(3),
+  .col-tipo { display: none; }
+}
+
+/* ── CELULAR ── */
+@media (max-width: 900px) {
+  :root { --nav-h: 64px; }
+
+  html { font-size: 15px; }
+
+  .solo-desktop { display: none; }
+  .solo-mobile { display: inline; }
+
+  .dashboard { display: block; }
+
+  /* Barra superior */
   .sidebar {
+    position: sticky;
+    top: 0;
+    bottom: auto;
     width: 100%;
-    height: auto;
-    position: relative;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    padding-top: calc(0.6rem + env(safe-area-inset-top));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
+  .sidebar-logo {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .sidebar-logo img { width: 46px; }
+
+  .sidebar-nombre { font-size: 0.9rem; white-space: nowrap; }
+
+  .btn-logout {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Menú inferior tipo app */
+  .sidebar-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: row;
+    gap: 0;
+    background: var(--azul);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 200;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-item {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    height: var(--nav-h);
+    border-radius: 0;
+    padding: 6px 4px;
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  .nav-ico { font-size: 1.25rem; width: auto; }
+
+  .nav-item.activo {
+    background: rgba(74, 159, 212, 0.15);
+    box-shadow: inset 0 3px 0 var(--celeste);
+  }
+
+  /* Contenido */
   .main-content {
     margin-left: 0;
+    min-height: auto;
+    padding: 1rem;
+    padding-bottom: calc(var(--nav-h) + 1.5rem + env(safe-area-inset-bottom));
   }
+
+  .seccion-header { margin-bottom: 1rem; gap: 0.75rem; }
+
+  .seccion-header h2 { font-size: 1.3rem; }
+
+  /* El botón "+ Nueva" de arriba sobra: está en el menú de abajo */
+  #seccion-propiedades .seccion-header .btn-primary { display: none; }
+
+  /* Inputs a 16px: evita que el iPhone haga zoom al tocar un campo */
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .tipos-input-row input,
+  .filtros-admin select { font-size: 16px; }
+
+  .filtros-admin { gap: 0.5rem; }
+  .filtros-admin select { flex: 1; min-width: 0; padding: 10px; }
+
+  /* ── Tabla → tarjetas ── */
+  .tabla-wrap {
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .tabla thead { display: none; }
+
+  .tabla,
+  .tabla tbody { display: block; }
+
+  .tabla tbody tr {
+    display: grid;
+    grid-template-columns: 84px auto 1fr;
+    grid-template-areas:
+      "foto titulo titulo"
+      "foto tipo tipo"
+      "foto op estado"
+      "precio precio acciones";
+    column-gap: 0.75rem;
+    row-gap: 0.35rem;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 0.85rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .tabla tbody tr:hover { background: white; }
+
+  .tabla td {
+    display: block;
+    padding: 0;
+    border: none;
+    min-width: 0;
+  }
+
+  .tabla tr.fila-vacia { display: block; }
+  .tabla tr.fila-vacia td { padding: 2rem 0; }
+
+  .col-foto { grid-area: foto; align-self: start; }
+  .col-titulo { grid-area: titulo; overflow-wrap: anywhere; line-height: 1.3; }
+  .col-tipo {
+    grid-area: tipo;
+    display: block !important;
+    font-size: 0.78rem;
+    color: var(--texto-medio);
+  }
+  .col-op { grid-area: op; }
+  .col-estado { grid-area: estado; }
+  .col-precio,
+  .col-acciones {
+    align-self: stretch;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .col-precio {
+    grid-area: precio;
+    font-size: 1rem;
+    padding-top: 0.6rem !important;
+    border-top: 1px solid var(--gris) !important;
+  }
+  .col-acciones {
+    grid-area: acciones;
+    margin-left: -0.75rem;
+    justify-content: flex-end;
+    padding-top: 0.6rem !important;
+    border-top: 1px solid var(--gris) !important;
+  }
+
+  .tabla-foto,
+  .tabla-foto-placeholder {
+    width: 84px;
+    height: 68px;
+    border-radius: 6px;
+  }
+
+  .acciones { justify-content: flex-end; gap: 0.5rem; }
+
+  .btn-accion { padding: 9px 14px; font-size: 0.82rem; }
+
+  /* ── Formulario ── */
+  .prop-form { padding: 1.1rem; border-radius: 10px; }
 
   .form-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
   }
 
-  .form-group.full {
-    grid-column: 1;
+  .form-grid > .form-group { grid-column: 1 / -1; }
+  .form-grid > .form-group-chico { grid-column: auto; }
+
+  .check-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
   }
+
+  .check-group label { font-size: 0.95rem; }
+  .check-group input[type="checkbox"] { width: 20px; height: 20px; }
+
+  .fotos-upload-area { padding: 1.5rem 1rem; }
+
+  .fotos-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .foto-item { width: auto; height: auto; aspect-ratio: 4 / 3; }
+
+  .foto-btn { width: 30px; height: 30px; font-size: 0.85rem; border-radius: 5px; }
+
+  .form-actions {
+    position: sticky;
+    bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+    background: white;
+    margin: 0 -1.1rem -1.1rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+    gap: 0.6rem;
+  }
+
+  .form-actions button { flex: 1; }
+
+  /* ── Tipos ── */
+  .tipos-layout { max-width: none; padding: 1.1rem; }
+  .tipo-item { padding: 12px 14px; }
+  .tipo-item button { padding: 6px 10px; }
+
+  /* ── Modal ── */
+  .modal-confirm { padding: 1.5rem; }
+  .modal-confirm-btns button { flex: 1; }
+}
+
+/* ── CELULARES CHICOS ── */
+@media (max-width: 380px) {
+  .sidebar-nombre { display: none; }
+  .tabla tbody tr { grid-template-columns: 70px auto 1fr; }
+  .tabla-foto,
+  .tabla-foto-placeholder { width: 70px; height: 56px; }
+  .login-card { padding: 1.75rem 1.25rem; }
 }
